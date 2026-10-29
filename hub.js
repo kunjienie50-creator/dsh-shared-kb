@@ -732,6 +732,7 @@ function usage() {
   node hub.js [--data DIR] --list-members
   node hub.js [--data DIR] --remove-member NAME
   node hub.js [--data DIR] --rotate NAME
+  node hub.js [--data DIR] --invite NAME [--url http://192.168.1.10:8787]   # 重新打印邀请码
   node hub.js [--data DIR] --rename "新库名"
 
 环境变量：DSH_SHARED_KB_DATA / DSH_SHARED_KB_PORT / DSH_SHARED_KB_HOST
@@ -760,6 +761,12 @@ function main() {
   if (args.rotate) {
     const member = store.rotate(String(args.rotate), 'cli')
     console.log(`已轮换：${member.name}\n新令牌：${member.token}`)
+    return
+  }
+  if (args.invite) {
+    const member = store.config.members.find((m) => m.name === String(args.invite))
+    if (!member) { console.error(`成员不存在：${args.invite}`); process.exitCode = 1; return }
+    console.log(inviteCode(baseUrl, member))
     return
   }
   if (args['list-members']) {

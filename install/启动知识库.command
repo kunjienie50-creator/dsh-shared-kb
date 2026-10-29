@@ -17,18 +17,18 @@ fi
 
 DATA="$HOME/.dsh-shared-kb"
 mkdir -p "$DATA"
+IP="$(ipconfig getifaddr en0 2>/dev/null || ipconfig getifaddr en1 2>/dev/null || echo 127.0.0.1)"
+URL="http://$IP:8787"
 
 if [ ! -f "$DATA/config.json" ]; then
   echo "第一次启动，先建管理员。"
   echo -n "你的名字（会显示为文档作者）："
   read -r NAME
   [ -z "$NAME" ] && NAME="管理员"
-  "$NODE" hub.js --data "$DATA" --add-member "$NAME" --admin
+  "$NODE" hub.js --data "$DATA" --add-member "$NAME" --admin --url "$URL"
   echo
 fi
 
-IP="$(ipconfig getifaddr en0 2>/dev/null || ipconfig getifaddr en1 2>/dev/null || echo 127.0.0.1)"
-URL="http://$IP:8787"
 echo
 echo "=============================================="
 echo " 团队知识库已启动：$URL"
