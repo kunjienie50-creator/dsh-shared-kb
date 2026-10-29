@@ -572,7 +572,7 @@ function Page({ t }) {
                 ) : null,
                 h(Markdown, { text: doc.markdown }),
                 doc.rawId ? h('p', { style: { marginTop: '18px', fontSize: '11.5px' } },
-                  h('a', { href: `${API}/raw?id=${encodeURIComponent(doc.rawId)}` }, '下载原始素材')) : null,
+                  h('a', { href: `${API}/raw?id=${encodeURIComponent(doc.rawId)}${doc.rawName ? `&name=${encodeURIComponent(doc.rawName)}` : ''}` }, `下载原始素材${doc.rawName ? '（' + doc.rawName + '）' : ''}`)) : null,
               )
             : h('div', { className: 'skb-empty' }, loading ? t('loading') : t('empty')),
         ),

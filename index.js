@@ -779,10 +779,13 @@ function apply(ctx, config) {
         if (req.method === 'GET' && rest === '/raw') {
           const upstream = await proxy(cfg, `/api/raw?id=${encodeURIComponent(url.searchParams.get('id') || '')}`)
           const buffer = Buffer.from(await upstream.arrayBuffer())
+          const upstreamDisposition = upstream.headers.get('content-disposition')
+          const name = url.searchParams.get('name')
           res.writeHead(200, {
-            'content-type': 'application/octet-stream',
+            'content-type': upstream.headers.get('content-type') || 'application/octet-stream',
             'content-length': buffer.length,
-            'content-disposition': `attachment; filename*=UTF-8''${encodeURIComponent(url.searchParams.get('name') || 'raw.bin')}`,
+            // 上游 Hub 已经带 filename*=UTF-8''，直接透传；没有才退回 name 参数
+            'content-disposition': upstreamDisposition || `attachment; filename*=UTF-8''${encodeURIComponent(name || 'raw.bin')}`,
           })
           res.end(buffer)
           return

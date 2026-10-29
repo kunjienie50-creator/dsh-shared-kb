@@ -46,7 +46,7 @@ node hub.js --data ~/.dsh-shared-kb --port 8787 --host 0.0.0.0 --url http://<局
 
 - **市场**（上架后）：在 dshmarket 里搜「共享知识库」安装。
 - **GitHub**：插件页「添加 / 安装」粘贴 `github:kunjienie50-creator/dsh-shared-kb`。
-- **Hub 直连**：粘贴 `http://<你的Hub地址>:8787/install/dsh-shared-kb-0.2.1.tgz`。
+- **Hub 直连**：粘贴 `http://<你的Hub地址>:8787/install/dsh-shared-kb-0.2.2.tgz`。
 
 装完按提示重启 DSH。
 

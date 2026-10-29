@@ -27,7 +27,7 @@ const path = require('node:path')
 const crypto = require('node:crypto')
 const os = require('node:os')
 
-const VERSION = '0.2.1'
+const VERSION = '0.2.2'
 const MAX_UPLOAD = 64 * 1024 * 1024
 const MAX_BODY = 8 * 1024 * 1024
 const MAX_VERSIONS = 20
@@ -280,6 +280,7 @@ class Store {
       createdAt: doc.createdAt,
       updatedAt: doc.updatedAt,
       rawId: doc.rawId || '',
+      rawName: doc.rawId && this.raw.get(doc.rawId) ? this.raw.get(doc.rawId).name : '',
       sha256: doc.sha256 || '',
       bytes: Buffer.byteLength(doc.markdown || '', 'utf8'),
       version: doc.version || 1,
