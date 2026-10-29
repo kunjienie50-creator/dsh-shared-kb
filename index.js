@@ -905,4 +905,4 @@ function decodeURIComponentSafe(value) {
   try { return decodeURIComponent(String(value)) } catch { return String(value) }
 }
 
-module.exports = { name: NAME, inject: ['tools'], Config, apply }
+module.exports = { name: NAME, inject: ['tools', 'webServer'], Config, apply }

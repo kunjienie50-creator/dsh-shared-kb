@@ -30,6 +30,7 @@ const ZH = {
   category: '分类', all: '全部', confidence: '可信度',
   readFail: '读取失败：', searchFail: '搜索失败：', loadFail: '连接失败：',
   setupTitle: '连接团队知识库', setupBody: '把管理员发你的邀请码粘贴到下面，点「连接」即可。通常只有这一件事要做。',
+  connFailTitle: '连不上知识库', retry: '重试', reenter: '重新填邀请码', api: '页面接口',
   invitePlaceholder: '粘贴邀请码（skb1.…）', connect: '连接', connecting: '连接中…',
   manual: '手动填写', manualHide: '收起手动填写', hubUrl: 'Hub 地址', token: '成员令牌', member: '显示名', save: '保存',
   badInvite: '邀请码格式不对，请让管理员重新发一个。',
@@ -281,6 +282,7 @@ function Page({ t }) {
   const [manual, setManual] = React.useState(false)
   const [form, setForm] = React.useState({ hubUrl: '', token: '', member: '' })
   const [view, setView] = React.useState('kb')
+  const [fatal, setFatal] = React.useState('')
   const fileRef = React.useRef(null)
   const dragDepth = React.useRef(0)
 
@@ -450,6 +452,25 @@ function Page({ t }) {
             h('input', { className: 'skb-input', placeholder: t('member'), value: form.member, onChange: (e) => setForm({ ...form, member: e.target.value }) }),
             h('div', null, h('button', { className: 'skb-btn', onClick: saveManual, disabled: busy }, t('save'))),
           ) : null,
+        ),
+      ),
+      toast ? h('div', { className: 'skb-toast' + (toast.error ? ' err' : '') }, toast.text) : null,
+    )
+  }
+
+  if (fatal && !setup) {
+    return h('div', { className: 'skb-wrap' },
+      h('style', null, CSS),
+      h('div', { className: 'skb-page' },
+        h('header', { className: 'skb-head' }, h('div', null, h('h1', null, t('title')), h('div', { className: 'skb-sub' }, t('connFailTitle')))),
+        h('div', { className: 'skb-hint' },
+          h('h2', null, t('connFailTitle')),
+          h('p', { style: { wordBreak: 'break-all' } }, fatal),
+          h('p', { style: { fontSize: '11.5px', wordBreak: 'break-all' } }, `${t('api')}：${API}/status`),
+          h('div', { style: { display: 'flex', gap: '8px', marginTop: '12px' } },
+            h('button', { className: 'skb-btn primary', onClick: () => { setFatal(''); refresh() } }, t('retry')),
+            h('button', { className: 'skb-btn', onClick: () => { setFatal(''); setSetup(true) } }, t('reenter')),
+          ),
         ),
       ),
       toast ? h('div', { className: 'skb-toast' + (toast.error ? ' err' : '') }, toast.text) : null,

@@ -85,7 +85,7 @@ description:
 Hub 自带安装包地址，任何成员都能在 **插件 → 添加** 里直接粘贴：
 
 ```
-http://<你的Hub地址>:8787/install/dsh-shared-kb-0.2.0.tgz
+http://<你的Hub地址>:8787/install/dsh-shared-kb-0.2.1.tgz
 ```
 
 装完打开「共享知识库」，粘邀请码即可。和市场上装的效果完全一样，只是不在目录里展示。

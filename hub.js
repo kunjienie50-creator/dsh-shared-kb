@@ -27,7 +27,7 @@ const path = require('node:path')
 const crypto = require('node:crypto')
 const os = require('node:os')
 
-const VERSION = '0.2.0'
+const VERSION = '0.2.1'
 const MAX_UPLOAD = 64 * 1024 * 1024
 const MAX_BODY = 8 * 1024 * 1024
 const MAX_VERSIONS = 20
