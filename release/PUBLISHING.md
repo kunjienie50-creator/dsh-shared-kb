@@ -11,7 +11,14 @@ dshmarket 只展示 **awesome-dsh-plugin** 这个目录里的插件。所以「�
 
 ---
 
-## 1. 建 GitHub 仓库
+## 进度
+
+- ✅ GitHub 仓库已建好并推送：https://github.com/kunjienie50-creator/dsh-shared-kb
+- ✅ `dsh-plugin` topic 已加；已验证 `github:kunjienie50-creator/dsh-shared-kb` 能安装
+- ⏳ npm：等待 token（可选）
+- ⏳ 目录 PR：仓库需满 1 天，已排期 2026-10-30 14:40（fork 的 `add-dsh-shared-kb` 分支已就绪）
+
+## 1. 建 GitHub 仓库（已完成）
 
 仓库名建议 `dsh-shared-kb`，公开。
 
@@ -21,7 +28,7 @@ git init
 git add .
 git commit -m "feat: team shared knowledge base plugin"
 git branch -M main
-git remote add origin https://github.com/<你的用户名>/dsh-shared-kb.git
+git remote add origin https://github.com/kunjienie50-creator/dsh-shared-kb.git
 git push -u origin main
 ```
 
@@ -33,9 +40,9 @@ git push -u origin main
 然后把 `package.json` 里三处 `OWNER` 换成你的用户名：
 
 ```json
-"repository": { "url": "https://github.com/<你>/dsh-shared-kb.git" },
-"homepage": "https://github.com/<你>/dsh-shared-kb#readme",
-"bugs": { "url": "https://github.com/<你>/dsh-shared-kb/issues" }
+"repository": { "url": "https://github.com/kunjienie50-creator/dsh-shared-kb.git" },
+"homepage": "https://github.com/kunjienie50-creator/dsh-shared-kb#readme",
+"bugs": { "url": "https://github.com/kunjienie50-creator/dsh-shared-kb/issues" }
 ```
 
 ## 2. 发 npm（强烈建议）
@@ -55,8 +62,8 @@ npm publish --access public    # 包名 dsh-shared-kb（已确认未被占用）
 2. 新建文件 `data/plugins/<你的GitHub用户名>__dsh-shared-kb.yml`：
 
 ```yaml
-url: https://github.com/<你的用户名>/dsh-shared-kb
-name: <你的用户名>/dsh-shared-kb
+url: https://github.com/kunjienie50-creator/dsh-shared-kb
+name: kunjienie50-creator/dsh-shared-kb
 category: tools
 description:
   en: 'Team shared knowledge base: one member runs a zero-dependency Hub, everyone else installs this plugin and joins with one invite code; uploads are normalized to ten categories with a summary, confidence and points, and every member’s agent can search them.'

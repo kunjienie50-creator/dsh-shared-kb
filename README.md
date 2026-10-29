@@ -42,13 +42,13 @@ node hub.js --data ~/.dsh-shared-kb --port 8787 --host 0.0.0.0 --url http://<局
 
 ### 1. 装插件
 
-在 DSH 的 **插件** 页面点「添加 / 安装」，粘贴 Hub 上的安装地址：
+三种方式，任选其一：
 
-```
-http://<你的Hub地址>:8787/install/dsh-shared-kb-0.2.0.tgz
-```
+- **市场**（上架后）：在 dshmarket 里搜「共享知识库」安装。
+- **GitHub**：插件页「添加 / 安装」粘贴 `github:kunjienie50-creator/dsh-shared-kb`。
+- **Hub 直连**：粘贴 `http://<你的Hub地址>:8787/install/dsh-shared-kb-0.2.0.tgz`。
 
-装完按提示重启 DSH。如果插件页不支持 URL，就把整个 `dsh-shared-kb` 文件夹发给对方，用「从本地目录安装」。
+装完按提示重启 DSH。
 
 ### 2. 粘邀请码
 
