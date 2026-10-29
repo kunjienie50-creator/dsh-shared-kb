@@ -1,0 +1,5 @@
+# dsh-shared-kb bundle patch: 把插件行插入宿主组合（不是 agent preset）。
+
+- insert:
+    - id: shared-kb
+      name: 'dsh-shared-kb'

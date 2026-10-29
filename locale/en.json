@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Shared Knowledge Base",
+    "description": "Client for the team's shared knowledge base: upload material, normalize on ingest, search and read across members; models use the skb_* tools."
+  }
+}

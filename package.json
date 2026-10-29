@@ -1,0 +1,66 @@
+{
+  "name": "dsh-shared-kb",
+  "version": "0.2.0",
+  "description": "团队共享知识库：管理员在自己电脑跑 Hub，成员装插件后粘贴一个邀请码即可上传、检索；素材按 inbox-triage 规范统一整理。",
+  "license": "MIT",
+  "main": "index.js",
+  "bin": {
+    "dsh-shared-kb-hub": "./hub.js"
+  },
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./hub": "./hub.js",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "index.js",
+    "client.js",
+    "hub.js",
+    "cordis.patch.yml",
+    "locale/*.json",
+    "icon.svg",
+    "skills",
+    "README.md",
+    "install"
+  ],
+  "engines": {
+    "dsh": ">=0.2.0",
+    "node": ">=20"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true
+    }
+  },
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "knowledge-base",
+    "team",
+    "shared",
+    "hub",
+    "inbox-triage"
+  ],
+  "dependencies": {
+    "@deepseek-ai/schemastery": "^3.18.5"
+  },
+  "author": "dsh-shared-kb contributors",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kunjienie50-creator/dsh-shared-kb.git"
+  },
+  "homepage": "https://github.com/kunjienie50-creator/dsh-shared-kb#readme",
+  "bugs": {
+    "url": "https://github.com/kunjienie50-creator/dsh-shared-kb/issues"
+  }
+}
