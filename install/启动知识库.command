@@ -29,6 +29,12 @@ if [ ! -f "$DATA/config.json" ]; then
   echo
 fi
 
+ADMIN="$("$NODE" -e "try{const c=require(process.env.HOME+'/.dsh-shared-kb/config.json');const a=(c.members||[]).find(m=>m.role==='admin');process.stdout.write(a?a.name:'')}catch(e){}" 2>/dev/null)"
+if [ -n "$ADMIN" ]; then
+  echo
+  echo "管理员「$ADMIN」的邀请码（粘到插件页即可登录）："
+  "$NODE" hub.js --data "$DATA" --invite "$ADMIN" --url "$URL"
+fi
 echo
 echo "=============================================="
 echo " 团队知识库已启动：$URL"
