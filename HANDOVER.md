@@ -299,13 +299,23 @@ DSH 里移除旧插件 → 重新安装新版本 → 刷新页面。**升级已�
 
 ## 6. 分发渠道（按可靠性排序）
 
-1. **Hub 自带安装包**：把 `dist/dsh-shared-kb-0.3.x.tgz` 放到 Hub 的 `dist/` 目录，重启 Hub，成员用  
-   `https://desktop-hrgqhrm.tailad1fc2.ts.net/install/dsh-shared-kb-0.3.x.tgz`
-2. **GitHub Release 直链**：`https://github.com/.../releases/download/v0.3.x/dsh-shared-kb-0.3.x.tgz`（国内可能慢）
-3. **GitHub 仓库 spec**：`github:kunjienie50-creator/dsh-shared-kb`（需要 git）
-4. **npm**（未发布）：`dsh-shared-kb`，发布后市场安装最顺
+1. **dshmarket（目标渠道，等目录 PR 合并）**：合并后市场里搜「共享知识库」直接装。条目在
+   `awesome-dsh-plugin` 的 `data/plugins/kunjienie50-creator__dsh-shared-kb.yml`，带 `tarball:` 指向
+   `releases/latest/download/dsh-shared-kb.tgz`（**版本无关的文件名**，见 `release/PUBLISHING.md` 的说明）。
+2. **Hub 自带安装包**：把 `dist/dsh-shared-kb-0.3.x.tgz` 放到 Hub 的 `dist/` 目录，重启 Hub，成员用  
+   `https://desktop-hrgqhrm.tailad1fc2.ts.net/install/dsh-shared-kb-0.3.x.tgz`  
+   （在 DSH 的「插件 → 添加插件」里粘这个 URL 即可，会显示为「压缩包」）
+3. **GitHub Release 直链**：`https://github.com/.../releases/download/v0.3.x/dsh-shared-kb-0.3.x.tgz`（国内可能慢）
+4. **GitHub 仓库 spec**：`github:kunjienie50-creator/dsh-shared-kb`（需要 git）
+5. **npm**（未发布）：`dsh-shared-kb`，本机 `npm whoami` 是 `ENEEDAUTH`，要发得先 `npm login`
 
 > 2026-10-30 已把 Hub 的 `dist/` 换成 `dsh-shared-kb-0.3.0.tgz`，`/install/` 这条链路可用。**`dist/` 里别留旧版本包**，成员可能按老链接装到 0.3.x（0.2.0 有白屏 bug）。
+
+> ⚠️ **别在 Hub 自己这台机器上用「插件 → 添加插件 → URL」装本仓库的包**。本机 profile 的
+> `node_modules/dsh-shared-kb` 是指向仓库的 **Junction**，npm 会把仓库当成安装目标，`npm pack`
+> 阶段会删掉 `.git/` 里的 `HEAD`/`config`/`index`/`hooks/`（`objects/` 和 `refs/` 能幸存）。2026-10-30
+> 踩过一次，恢复命令在 `DEV-SETUP.md`「别在本机 profile 里装 URL 安装包」那节。本机要升级就
+> `remove_bundle` 再装本地目录，或者干脆只做 `set_plugin enabled=false/true` 重载。
 
 ---
 
@@ -375,7 +385,9 @@ tailscale funnel reset         # 关（Tailscale 内网访问不受影响）
 - [ ] **PDF/Word/扫描件**：不会自动抽取，靠 agent 用 office/OCR 技能转文本后入库
 - [ ] **没有在线状态**：管理页只有成员名单，不显示谁在线；「没人加入」是正常现象
 - [ ] **规模**：文档存 JSON、搜索是内存扫描，5~20 人够用；上千篇建议换 SQLite FTS5
-- [ ] **上架 PR 等合并**：CI 已过，维护者 review 后合并，市场约 1 天内出现
+- [ ] **上架 PR 等合并**：`awesome-dsh-plugin/awesome-dsh-plugin#10560`，`check` 与 `Submission gate` 已 SUCCESS，条目内容已升级到 v0.3.0 并加 `tarball:`；维护者合并后市场约 1 天内出现
+- [ ] **零基础用户装完是死路**：市场安装的人没有 Hub，页面会停在「填邀请码 / 手动配置」。要么有人给他邀请码，要么做「本机一键起 Hub（仅自己用）」的 solo 模式 —— 这是上架后最该补的一块
+- [ ] **icon 没做**：目录条目不写 `icon:` 就回退作者头像；要的话准备一张 GitHub 托管的 png（`icon-180.png` 之类）再加 `icon:` 字段
 - [ ] **GitHub token**：之前用过的那枚建议吊销；以后用 `gh auth login` 或新建短有效期 PAT
 - [ ] **客户端改动需刷新**：页面改动不会热更，装/升级后都要刷新（升级已安装包要重装）
 - [ ] **宿主侧没有回归脚本**：`smoke-hub.mjs` 只测 `hub.js`；`index.js` 的 zip 打包、私有库、`/normalize` 目前只靠工作区里的 `.probe-*.mjs` 手工跑

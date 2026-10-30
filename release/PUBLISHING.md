@@ -15,8 +15,38 @@ dshmarket 只展示 **awesome-dsh-plugin** 这个目录里的插件。所以「�
 
 - ✅ GitHub 仓库已建好并推送：https://github.com/kunjienie50-creator/dsh-shared-kb
 - ✅ `dsh-plugin` topic 已加；已验证 `github:kunjienie50-creator/dsh-shared-kb` 能安装
-- ⏳ npm：等待 token（可选）
-- ⏳ 目录 PR：仓库需满 1 天，已排期 2026-10-30 14:40（fork 的 `add-dsh-shared-kb` 分支已就绪）
+- ✅ 目录 PR 已提：**awesome-dsh-plugin/awesome-dsh-plugin#10560**（`check` 与 `Submission gate` 均 SUCCESS）
+- ✅ v0.3.0 已发布：`9449a5c`、Release `v0.3.0`、两个资产（见下）
+- ✅ PR 里的条目已升级到 v0.3.0 描述并加上 `tarball:`（commit `ad9f6e0`，CI 重跑中）
+- ⏳ npm：本机 `npm whoami` 返回 `ENEEDAUTH`，未登录 npm —— 有 `tarball:` 字段就不必需
+
+### 预打包资产（重要）
+
+Release `v0.3.0` 上有**两个**同名内容的包，区别只在文件名：
+
+| 资产 | 大小 | 用途 |
+|---|---|---|
+| `dsh-shared-kb-0.3.0.tgz` | 138759 | 存档、手动下载 |
+| `dsh-shared-kb.tgz` | 138759 | **给 `tarball:` 字段用**，文件名不带版本号 |
+
+原因：`releases/latest/download/<文件名>` 是**字面取文件名**的，`latest` 只解析 tag。
+资产名若写成 `-0.3.0.tgz`，下个版本发布后 `latest/download/dsh-shared-kb-0.3.0.tgz` 仍然指向
+「最新的 release 里叫这个名字的文件」——一旦新 release 没带这个名字就 404。所以目录条目固定写：
+
+```
+tarball: https://github.com/kunjienie50-creator/dsh-shared-kb/releases/latest/download/dsh-shared-kb.tgz
+```
+
+以后每次发版，除了版本号包，**还要再传一份不带版本号的同名资产**：
+
+```powershell
+gh release upload v0.4.0 dist/dsh-shared-kb-0.4.0.tgz --repo kunjienie50-creator/dsh-shared-kb
+Copy-Item dist/dsh-shared-kb-0.4.0.tgz "$env:TEMP\dsh-shared-kb.tgz" -Force
+gh release upload v0.4.0 "$env:TEMP\dsh-shared-kb.tgz" --repo kunjienie50-creator/dsh-shared-kb
+```
+
+（`--repo` 不能省：本机 profile 里插件是 junction，`gh` 偶尔会 `failed to run git`。也别用
+`dist/x.tgz#dsh-shared-kb.tgz` 这种改名语法 —— PowerShell 会把 `#` 之后当注释吃掉。）
 
 ## 1. 建 GitHub 仓库（已完成）
 
