@@ -1,7 +1,7 @@
 {
   "name": "dsh-shared-kb",
-  "version": "0.2.2",
-  "description": "团队共享知识库：管理员在自己电脑跑 Hub，成员装插件后粘贴一个邀请码即可上传、检索；素材按 inbox-triage 规范统一整理。",
+  "version": "0.3.0",
+  "description": "团队共享知识库：管理员在自己电脑跑 Hub，成员装插件后粘贴一个邀请码即可上传、检索；素材按 inbox-triage 规范统一整理。v0.3 加入重要资料置顶、收藏夹、评论与 @、版本对比、批量操作与本地私有库。",
   "license": "MIT",
   "main": "index.js",
   "bin": {
